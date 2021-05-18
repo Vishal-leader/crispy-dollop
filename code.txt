@@ -1,0 +1,99 @@
+#include <iostream>
+
+using namespace std;
+
+int m,n;
+
+void sum_dia(int arr1[50][50], int arr2[50][50]){
+    int sum1=0;
+    int sum2=0;
+    for (int i=1;i<=m;i++){
+        sum1+=arr1[i][i];
+    }
+    for (int i=1;i<=m;i++){
+        sum2+=arr2[i][i];
+    }
+    cout<<"summation of diagonal elements of first matrix: "<<sum1<<"\nsummation of diagonal elements of second matrix: "<<sum2<<endl;
+}
+
+void transpose(int arr1[50][50]){
+    int trarr[50][50];
+    for (int i=1;i<=m;i++){
+        for (int j=1;j<=m;j++){
+            trarr[i][j]=arr1[j][i];
+        }
+    }
+    cout<<"Transpose of matrix-1 :\n";
+    for (int i=1;i<=m;i++){
+        for (int j=1;j<=m;j++){
+            cout<<trarr[i][j];
+        }
+        cout<<endl;
+    }
+    cout<<"\n\n";
+}
+
+void calmatrix(int arr1[50][50], int arr2[50][50]){
+    int sum_mat[50][50], sub_mat[50][50], mult_mat[50][50];
+    for (int i=1;i<=m;i++){
+        for (int j=1;j<=m;j++){
+            sum_mat[i][j]=arr1[i][j]+arr2[i][j];
+            sub_mat[i][j]=arr1[i][j]-arr2[i][j];
+        }
+    }
+    int ad=0;
+    for (int c = 1; c <= m; c++) {
+        for (int d = 1; d <= n; d++) {
+            for (int k = 1; k <=n; k++) {
+                ad = (ad +(arr1[c][k]*arr2[k][d]));
+            }
+            mult_mat[c][d] = ad;
+            ad = 0;
+        }
+    }
+    cout<<"\n Sum of Matrices: \n";
+    for (int i=1;i<=m;i++){
+        for (int j=1;j<=m;j++){
+            cout<<sum_mat[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
+    cout<<"\n Subtraction of Matrices: \n";
+    for (int i=1;i<=m;i++){
+        for (int j=1;j<=m;j++){
+            cout<<sub_mat[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    cout<<"\n Multiplication of Matrices: \n";
+    for (int i=1;i<=m;i++){
+        for (int j=1;j<=m;j++){
+            cout<<mult_mat[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+int main(){
+    cin>>m>>n;
+    int arr1[50][50];
+    cout<<"Input for first matrix -->\n";
+    for (int i=1;i<=m;i++){
+        for (int j=1;j<=m;j++){
+            cin>>arr1[i][j];
+        }
+    }
+    int arr2[50][50];
+    cout<<"Input for second matrix -->\n";
+    for (int i=1;i<=m;i++){
+        for (int j=1;j<=m;j++){
+            cin>>arr2[i][j];
+        }
+    }
+    
+    calmatrix(arr1, arr2);
+    transpose(arr1);
+    sum_dia(arr1,arr2);
+    
+    return 0;
+    
+}
